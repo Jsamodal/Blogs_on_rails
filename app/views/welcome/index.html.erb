@@ -1,1 +1,8 @@
-<h1>Welcome To Blogs On Rails!</h1>
+<h1>Blog On Rails!</h1>
+
+<% @blogs.each do |blog|%>
+    <div>
+        <h2><%= link_to blog.title, blog_path(blog)%></h2>
+        <p><%= blog.body%></p>
+    </div>
+<% end %>

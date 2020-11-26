@@ -1,0 +1,19 @@
+<% if @blogs.errors.any? %>
+  <% flash[error] = "please fill out the form" %>
+<%end %>
+
+
+<%= form_for @blogs do |f|%>
+    <div>
+        <%= f.label :title%>
+        <%= f.text_field :title%>
+    </div>
+    
+    <div>
+        <%= f.label :body%>
+        <%= f.text_area :body%>
+    </div>
+    <%= f.submit %>
+
+
+<% end %>

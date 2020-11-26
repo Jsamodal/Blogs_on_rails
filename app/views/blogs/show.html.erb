@@ -1,0 +1,9 @@
+<h1><%= @blogs.title %></h1>
+
+
+<p><%= @blogs.body %></p>
+<p><%= @blogs.created_at %></p>
+<%= link_to "Delete", blog_path(@blogs), method: :delete, data: {confirm: "Are you sure?"}%>
+<%= link_to "Edit", edit_blog_path(@blogs)%>
+
+
