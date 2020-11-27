@@ -71,6 +71,7 @@ GEM
       activemodel (>= 5.2)
     builder (3.2.4)
     byebug (11.1.3)
+    cancancan (3.1.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
     erubi (1.10.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   bootstrap (~> 4.4.1)
   bootstrap_form (~> 4.0)
   byebug
+  cancancan
   faker
   hirb
   jbuilder (~> 2.7)

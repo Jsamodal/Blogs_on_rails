@@ -20,3 +20,13 @@ Blog.destroy_all
        
 end
 blog=Blog.all
+
+User.destroy_all
+PASSWORD='supersecret'
+
+super_user=User.create(
+    first_name: 'Jon',
+    last_name: 'Snow',
+    email:"js@winterfell.gov",
+    password: PASSWORD
+)
