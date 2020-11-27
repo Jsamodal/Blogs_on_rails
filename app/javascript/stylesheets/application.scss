@@ -1,0 +1,44 @@
+@import 'bootstrap';
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+    padding: 30px 5%;
+    background-color:rgb(240, 238, 238);
+}
+
+#blogs {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 30px 5%;
+    background-color:rgb(240, 238, 238);
+}
+
+#form {
+    align-items: right;
+    padding: 30px 5%;
+    background-color:rgb(240, 238, 238);
+}
+
+
+#blog {
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items:center;
+    padding: 30px 5%;
+    background-color:rgb(240, 238, 238);
+}
+

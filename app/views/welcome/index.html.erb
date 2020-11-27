@@ -1,8 +1,14 @@
+<br>
 <h1>Blog On Rails!</h1>
 
+
+<div id = 'blog'>
 <% @blogs.each do |blog|%>
-    <div>
+    <br>
+    <div class='card' id = 'blogs'>
         <h2><%= link_to blog.title, blog_path(blog)%></h2>
         <p><%= blog.body%></p>
     </div>
+    <br>
 <% end %>
+</div>

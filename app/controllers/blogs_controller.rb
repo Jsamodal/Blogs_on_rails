@@ -16,6 +16,11 @@ class BlogsController < ApplicationController
             else
                 render :new
             end
+
+            if @blogs.body.length > 50
+                flash[:notice] = "Post must contain atleast 50 words"
+                render :new
+            end
     end
 
     def show

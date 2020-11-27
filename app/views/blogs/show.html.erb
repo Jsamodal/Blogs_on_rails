@@ -1,9 +1,11 @@
+<br>
+<br>
 <h1><%= @blogs.title %></h1>
 
 
 <p><%= @blogs.body %></p>
 <small>
-<p><%= time_ago_in_words(@blogs.created_at) %> ago</p>
+<p>Posted <%= time_ago_in_words(@blogs.created_at) %> ago</p>
 </small> 
 <%= link_to "Delete", blog_path(@blogs), method: :delete, data: {confirm: "Are you sure?"}%>
 |
@@ -19,18 +21,18 @@
         rows: 5,
         placeholder: "what's your comment?"
     )%>
-
+    <br>
     <%= f.submit "Comment" %>
 <% end %>
-
-<ul>
+<br>
+<h2>Comments</h2>
 <% @comments.each do |a| %>
 
     <li>
     <%= a.body%>
     <br>
     <small>
-     <%=time_ago_in_words(a.created_at)%> ago |
+     Commented <%=time_ago_in_words(a.created_at)%> ago |
      </small>
         <%= link_to(
             "Delete", 
@@ -46,4 +48,3 @@
 
 
 <% end %>
-</ul>
