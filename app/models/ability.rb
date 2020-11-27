@@ -30,5 +30,17 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    can(:crud, Blog) do |blog|
+      user==blog.user
+    end
+  
+    can(:crud, Comment )do |comment|
+      user==comment.user
+    end
+    
+    user ||= User.new
+
+   
+    alias_action(:Create, :read, :update, :delete, to: :crud)
   end
 end

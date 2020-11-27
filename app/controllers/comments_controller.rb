@@ -16,8 +16,12 @@ end
 
 def destroy
     @comment= Comment.find params[:id]
+    if can?(:crud,@comment)
     @comment.destroy
     redirect_to blog_path(@comment.blog)
+    else
+        head :unauthorized
+    end
 end
 
 

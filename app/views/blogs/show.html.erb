@@ -7,9 +7,11 @@
 <small>
 <p>Posted <%= time_ago_in_words(@blogs.created_at) %> ago</p>
 </small> 
+<% if can?(:crud,@blog)%>
 <%= link_to "Delete", blog_path(@blogs), method: :delete, data: {confirm: "Are you sure?"}%>
 |
 <%= link_to "Edit", edit_blog_path(@blogs)%>
+<%end%>
 
 <h2>Comment:</h2>
 
@@ -32,8 +34,9 @@
     <%= a.body%>
     <br>
     <small>
-     Commented <%=time_ago_in_words(a.created_at)%> ago |
+     Commented <%=time_ago_in_words(a.created_at)%> ago
      </small>
+        <% if can?(:crud,a)%>
         <%= link_to(
             "Delete", 
            blog_comment_path(@blogs, a),
@@ -41,8 +44,9 @@
             data: {
             confirm: "are you sure you want to delete this answer?"
         }
-    
+       
     )%>
+     <% end %>
     <br>
     </li>
 

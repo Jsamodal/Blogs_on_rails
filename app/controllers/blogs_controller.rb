@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
-    
+    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authorize_user!, only:[:edit,:update, :destroy]
     def index
         @blogs = Blog.all
     end
@@ -48,4 +49,8 @@ class BlogsController < ApplicationController
         @blogs.destroy
         redirect_to blogs_path
     end
+
+    def authorize_user!
+        redirect_to root_path, alert:"Not Authorized" unless can?(:crud, @blog)
+      end
 end
