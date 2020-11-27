@@ -2,8 +2,48 @@
 
 
 <p><%= @blogs.body %></p>
-<p><%= @blogs.created_at %></p>
+<small>
+<p><%= time_ago_in_words(@blogs.created_at) %> ago</p>
+</small> 
 <%= link_to "Delete", blog_path(@blogs), method: :delete, data: {confirm: "Are you sure?"}%>
+|
 <%= link_to "Edit", edit_blog_path(@blogs)%>
 
+<h2>Comment:</h2>
 
+<%= form_with(model: [@blogs, @comment], local: true) do |f| %>
+
+    <%= f.text_area(
+        :body,
+        cols: 50,
+        rows: 5,
+        placeholder: "what's your comment?"
+    )%>
+
+    <%= f.submit "Comment" %>
+<% end %>
+
+<ul>
+<% @comments.each do |a| %>
+
+    <li>
+    <%= a.body%>
+    <br>
+    <small>
+     <%=time_ago_in_words(a.created_at)%> ago |
+     </small>
+        <%= link_to(
+            "Delete", 
+           blog_comment_path(@blogs, a),
+            method: :delete,
+            data: {
+            confirm: "are you sure you want to delete this answer?"
+        }
+    
+    )%>
+    <br>
+    </li>
+
+
+<% end %>
+</ul>
