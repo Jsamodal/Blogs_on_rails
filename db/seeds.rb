@@ -14,7 +14,7 @@ Blog.destroy_all
         title: Faker::Hacker.say_something_smart,
         body: Faker::TvShows::SouthPark.quote, 
         created_at:created_at,
-        updated_at:created_at
+        updated_at:created_at,
     
         )
        
@@ -27,6 +27,8 @@ PASSWORD='supersecret'
 super_user=User.create(
     first_name: 'Jon',
     last_name: 'Snow',
-    email:"js@winterfell.gov",
-    password: PASSWORD
+    email:"jonsnow@jo.gov",
+    password: 'qweqwe',
+    is_admin: true
+
 )

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+    before_action :authenticate_user!
 def create
     @blog = Blog.find params[:blog_id]
     @comment =Comment.new params.require(:comment).permit(:body)

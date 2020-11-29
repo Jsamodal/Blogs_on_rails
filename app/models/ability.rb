@@ -40,7 +40,9 @@ class Ability
     
     user ||= User.new
 
-   
+    if user.is_admin?
+      can :manage,:all
+    end
     alias_action(:Create, :read, :update, :delete, to: :crud)
   end
 end
