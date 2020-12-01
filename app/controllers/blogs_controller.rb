@@ -7,10 +7,11 @@ class BlogsController < ApplicationController
     
     def new
         @blog = Blog.new
+        
     end
 
     def create
-    
+       
         @blog = Blog.new params.require(:blog).permit(:title, :body)
             @blog.user = current_user
             if @blog.save
@@ -20,10 +21,7 @@ class BlogsController < ApplicationController
                 render :new
             end
 
-            if @blog.body.length > 50
-                flash[:notice] = "Post must contain atleast 50 words"
-                render :new
-            end
+               
     end
 
     def show
@@ -42,6 +40,7 @@ class BlogsController < ApplicationController
         @blog.user = current_user
         
         if @blog.update params.require(:blog).permit(:title, :body)
+            @blog.save
             redirect_to blog_path(@blog)
         else
             render :edit    
@@ -51,10 +50,10 @@ class BlogsController < ApplicationController
 
     def destroy
         @blog = Blog.find params[:id]
-    
+       
             if can?(:crud, @blog)
                @blog.destroy
-               redirect_to blogs_path
+               redirect_to root_path
             else
                 head :unauthorized
             end
@@ -64,3 +63,5 @@ class BlogsController < ApplicationController
         redirect_to root_path, alert:"Not Authorized" unless can?(:crud, @blog)
       end
 end
+
+

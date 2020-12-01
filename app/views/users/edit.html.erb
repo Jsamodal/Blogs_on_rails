@@ -20,6 +20,6 @@
     <%= f.label :password_confirmation  %> 
     <%= f.password_field :password_confirmation%>
 </div>
-<%= f.submit "update"%>
+<%= f.submit "update", data: {confirm: "Confirm to change Password?"}%>
 
 <% end %> 

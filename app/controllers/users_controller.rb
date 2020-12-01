@@ -20,9 +20,10 @@ class UsersController < ApplicationController
     
     def update 
         @user = User.find params[:id]
-        if @user.update params.require(:user).permit(:first_name, :last_name, :email, :password)
-            redirect_to user_path(@user)
+        if @user.update user_params 
             @user.save
+            redirect_to new_session_path
+
         else
             render :edit    
         end
