@@ -1,6 +1,6 @@
 <h1> All Blogs </h1>
 
-<% @blogs.each do |blog|%>
+<% @blog.each do |blog|%>
     <div>
         <h2><%= link_to blog.title, blog_path(blog)%></h2>
         <p><%= blog.body%></p>

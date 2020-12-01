@@ -1,43 +1,48 @@
 class BlogsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authenticate_user!, except: [:index, :show, ]
     before_action :authorize_user!, only:[:edit,:update, :destroy]
     def index
-        @blogs = Blog.all
+        @blog = Blog.all
     end
     
     def new
-        @blogs = Blog.new
+        @blog = Blog.new
     end
 
     def create
-        @blogs = Blog.new params.require(:blog).permit(:title, :body)
-            if @blogs.save
+    
+        @blog = Blog.new params.require(:blog).permit(:title, :body)
+            @blog.user = current_user
+            if @blog.save
                 flash[:notice] = "Blog created successfully"
-                redirect_to blog_path(@blogs)
+                redirect_to blog_path(@blog)
             else
                 render :new
             end
 
-            if @blogs.body.length > 50
+            if @blog.body.length > 50
                 flash[:notice] = "Post must contain atleast 50 words"
                 render :new
             end
     end
 
     def show
-        @blogs = Blog.find params[:id]
+        @blog = Blog.find params[:id]
         @comment = Comment.new
-        @comments = @blogs.comments
+        @comments = @blog.comments
     end
 
     def edit
-        @blogs = Blog.find params[:id]
+        @blog = Blog.find params[:id]
+       
     end
 
     def update
-        @blogs = Blog.find params[:id]
-        if @blogs.update params.require(:blog).permit(:title, :body)
-            redirect_to blog_path(@blogs)
+        @blog = Blog.find params[:id]
+        @blog.user = current_user
+        
+        if @blog.update params.require(:blog).permit(:title, :body)
+            redirect_to blog_path(@blog)
         else
             render :edit    
         end
@@ -45,9 +50,14 @@ class BlogsController < ApplicationController
     end
 
     def destroy
-        @blogs = Blog.find params[:id]
-        @blogs.destroy
-        redirect_to blogs_path
+        @blog = Blog.find params[:id]
+    
+            if can?(:crud, @blog)
+               @blog.destroy
+               redirect_to blogs_path
+            else
+                head :unauthorized
+            end
     end
 
     def authorize_user!

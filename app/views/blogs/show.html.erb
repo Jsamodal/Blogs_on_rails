@@ -1,21 +1,24 @@
 <br>
 <br>
-<h1><%= @blogs.title %></h1>
+<h1><%= @blog.title %></h1>
 
 
-<p><%= @blogs.body %></p>
+<p><%= @blog.body %></p>
 <small>
-<p>Posted <%= time_ago_in_words(@blogs.created_at) %> ago</p>
+<p>Posted <%= time_ago_in_words(@blog.created_at) %> ago</p>
 </small> 
-<% if can?(:crud,@blog)%>
-<%= link_to "Delete", blog_path(@blogs), method: :delete, data: {confirm: "Are you sure?"}%>
+<% if can?(:crud, @blog)%>
+<%= link_to "Delete", blog_path(@blog), 
+    method: :delete, 
+    data: {confirm: "Are you sure?"}
+%>
 |
-<%= link_to "Edit", edit_blog_path(@blogs)%>
+<%= link_to "Edit", edit_blog_path(@blog)%>
 <%end%>
 
 <h2>Comment:</h2>
 
-<%= form_with(model: [@blogs, @comment], local: true) do |f| %>
+<%= form_with(model: [@blog, @comment], local: true) do |f| %>
 
     <%= f.text_area(
         :body,
@@ -36,10 +39,10 @@
     <small>
      Commented <%=time_ago_in_words(a.created_at)%> ago
      </small>
-        <% if can?(:crud,a)%>
+        <% if can?(:crud, a)%>
         <%= link_to(
             "Delete", 
-           blog_comment_path(@blogs, a),
+           blog_comment_path(@blog, a),
             method: :delete,
             data: {
             confirm: "are you sure you want to delete this answer?"

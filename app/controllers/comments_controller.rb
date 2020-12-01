@@ -4,7 +4,7 @@ def create
     @blog = Blog.find params[:blog_id]
     @comment =Comment.new params.require(:comment).permit(:body)
     @comment.blog = @blog
-
+    @comment.user = current_user
     if @comment.save
         redirect_to blog_path(@blog)
     else
@@ -16,6 +16,7 @@ end
 
 def destroy
     @comment= Comment.find params[:id]
+    
     if can?(:crud,@comment)
     @comment.destroy
     redirect_to blog_path(@comment.blog)

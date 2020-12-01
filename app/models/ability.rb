@@ -32,6 +32,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
     can(:crud, Blog) do |blog|
       user==blog.user
+     
     end
   
     can(:crud, Comment )do |comment|

@@ -1,10 +1,10 @@
 <br>
-<% if @blogs.errors.any? %>
+<% if @blog.errors.any? %>
   <% flash[error] = "please fill out the form" %>
 <%end %>
 
 
-<%= form_for @blogs do |f|%>
+<%= form_for @blog do |f|%>
 
     <div id = 'form'>
     <div>

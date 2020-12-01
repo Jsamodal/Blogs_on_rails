@@ -14,10 +14,15 @@ class UsersController < ApplicationController
         end
     end
 
-    def update
+    def edit
+        @user = User.find params[:id] 
+    end 
+    
+    def update 
         @user = User.find params[:id]
         if @user.update params.require(:user).permit(:first_name, :last_name, :email, :password)
             redirect_to user_path(@user)
+            @user.save
         else
             render :edit    
         end
